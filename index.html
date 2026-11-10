@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#087443">
+<meta name="description" content="افغان پلاس؛ اخبار، آب‌وهوا، تبدیل ارز، آموزش، کاریابی و بازار افغانستان.">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
 <title>AFGHAN PLUS</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -64,7 +67,6 @@
         <p>وضعیت ولایت‌ها</p>
     </div>
 
-
     <div class="card" onclick="openPage('contact')">
         <span>📞</span>
         <h3>تماس با ما</h3>
@@ -87,5 +89,20 @@
 </footer>
 
 <script src="app.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js")
+            .then(function (registration) {
+                console.log("Service Worker registered:", registration.scope);
+            })
+            .catch(function (error) {
+                console.error("Service Worker registration failed:", error);
+            });
+    });
+}
+</script>
+
 </body>
 </html>
