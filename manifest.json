@@ -2,7 +2,7 @@
   "id": "./",
   "name": "AFGHAN PLUS",
   "short_name": "AFGHAN PLUS",
-  "description": "Afghan Plus is an all-in-one platform for Afghanistan, featuring news, weather, currency, education, jobs and marketplace services.",
+  "description": "Afghan Plus is an all-in-one platform for the people of Afghanistan.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
