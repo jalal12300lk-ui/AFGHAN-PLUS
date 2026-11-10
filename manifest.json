@@ -11,11 +11,7 @@
   "theme_color": "#087443",
   "lang": "fa",
   "dir": "rtl",
-  "categories": [
-    "education",
-    "news",
-    "utilities"
-  ],
+  "categories": ["education", "news", "utilities"],
   "icons": [
     {
       "src": "icon.svg",
