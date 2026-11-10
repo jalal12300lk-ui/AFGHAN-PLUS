@@ -1,14 +1,21 @@
 {
+  "id": "./",
   "name": "AFGHAN PLUS",
   "short_name": "AFGHAN PLUS",
-  "description": "همه امکانات، برای همه مردم افغانستان",
+  "description": "Afghan Plus is an all-in-one platform for the people of Afghanistan, featuring news, weather, currency, education, jobs and marketplace services.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#087443",
   "theme_color": "#087443",
   "lang": "fa",
   "dir": "rtl",
+  "categories": [
+    "education",
+    "news",
+    "utilities"
+  ],
   "icons": [
     {
       "src": "icon.svg",
