@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075c35">
+<title>AFGHAN PLUS - Currency</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f1f5f2;
+    font-family: sans-serif;
+    color: #183326;
+}
+
+header {
+    background: linear-gradient(135deg,#075c35,#079451);
+    color: white;
+    padding: 25px 18px;
+    border-radius: 0 0 25px 25px;
+}
+
+header h2 {
+    margin: 0 0 8px;
+}
+
+.back {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.container {
+    padding: 18px;
+}
+
+.box {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 15px #0000000b;
+}
+
+h3 {
+    color: #087443;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin: 14px 0 7px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #079451;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background: #087443;
+    color: white;
+    border: none;
+    border-radius: 11px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.result {
+    background: #e3f3e9;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 12px;
+    line-height: 2;
+    font-size: 15px;
+}
+
+.note {
+    font-size: 12px;
+    color: #777;
+    line-height: 2;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #087443;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="back">← بازگشت به صفحه اصلی</a>
+    <h2>💱 تبدیل ارز افغانستان</h2>
+    <p>AFGHAN PLUS 🇦🇫</p>
+</header>
+
+<div class="container">
+
+<div class="box">
+    <h3>💰 ماشین‌حساب ارز</h3>
+
+    <label>مقدار افغانی (AFN)</label>
+    <input id="amount" type="number" placeholder="مثلاً 1000" min="0">
+
+    <button onclick="convert()">محاسبه ارز</button>
+
+    <div class="result" id="result">
+        نتیجه تبدیل ارز اینجا نمایش داده می‌شود.
+    </div>
+</div>
+
+<div class="box">
+    <h3>⚙️ تنظیم نرخ تبدیل</h3>
+
+    <p class="note">
+    نرخ هر ۱ افغانی را به‌صورت دستی وارد کن.
+    برای تومان، نرخ بازار را به تومان وارد کن، نه ریال.
+    </p>
+
+    <label>۱ افغانی چند تومان است؟</label>
+    <input id="toman" type="number" placeholder="نرخ تومان">
+
+    <label>۱ افغانی چند دلار است؟</label>
+    <input id="usd" type="number" step="any" placeholder="نرخ دلار">
+
+    <label>۱ افغانی چند یورو است؟</label>
+    <input id="eur" type="number" step="any" placeholder="نرخ یورو">
+
+    <button onclick="saveRates()">ذخیره نرخ‌ها</button>
+
+    <p class="note" id="status"></p>
+</div>
+
+</div>
+
+<footer>
+    <b>AFGHAN PLUS 🇦🇫</b>
+    <p>Developer: JALAL ❤️</p>
+</footer>
+
+<script src="currency.js"></script>
+</body>
+</html>

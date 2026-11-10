@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075c35">
+<title>AFGHAN PLUS EDUCATION</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f5f2;font-family:sans-serif;color:#183326}
+header{background:linear-gradient(135deg,#075c35,#079451);color:white;padding:25px 18px;border-radius:0 0 25px 25px}
+header a{color:white;text-decoration:none}
+header h2{margin-top:25px}
+.container{padding:17px}
+.search{width:100%;padding:15px;border:0;border-radius:12px;font-size:15px;margin:15px 0;outline:none}
+.title{color:#087443;margin:15px 0}
+.card{background:white;padding:17px;border-radius:15px;margin-bottom:12px;box-shadow:0 3px 12px #00000009}
+.card h3{color:#087443;margin:0 0 10px}
+.card p{color:#777;font-size:13px}
+button{background:#087443;color:white;border:0;border-radius:9px;padding:10px 18px;font-size:14px}
+.lesson{display:none;background:#e2f3e9;padding:17px;border-radius:14px;margin-top:15px;line-height:2}
+.lesson h3{color:#075c35}
+.lesson-item{background:white;padding:12px;border-radius:10px;margin:8px 0}
+footer{text-align:center;color:#087443;padding:25px}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html">← بازگشت به صفحه اصلی</a>
+<h2>📚 مرکز آموزش افغان پلاس</h2>
+<p>یادگیری امروز، موفقیت فردا 🇦🇫</p>
+</header>
+
+<div class="container">
+
+<input class="search" id="search" placeholder="🔎 جست‌وجوی آموزش...">
+
+<h3 class="title">دسته‌بندی آموزش‌ها</h3>
+
+<div class="card">
+<h3>🇬🇧 زبان انگلیسی</h3>
+<p>آموزش کلمات و جملات پرکاربرد انگلیسی</p>
+<button onclick="showLesson('english')">شروع آموزش</button>
+</div>
+
+<div class="card">
+<h3>💻 آموزش کامپیوتر</h3>
+<p>آشنایی با کامپیوتر و مهارت‌های دیجیتال</p>
+<button onclick="showLesson('computer')">شروع آموزش</button>
+</div>
+
+<div class="card">
+<h3>👨‍💻 برنامه‌نویسی</h3>
+<p>شروع یادگیری برنامه‌نویسی از صفر</p>
+<button onclick="showLesson('coding')">شروع آموزش</button>
+</div>
+
+<div id="english" class="lesson">
+<h3>🇬🇧 درس اول زبان انگلیسی</h3>
+<div class="lesson-item">Hello = سلام</div>
+<div class="lesson-item">Good morning = صبح بخیر</div>
+<div class="lesson-item">How are you? = حالت چطور است؟</div>
+<div class="lesson-item">Thank you = تشکر</div>
+<div class="lesson-item">Welcome = خوش آمدید</div>
+<div class="lesson-item">Goodbye = خداحافظ</div>
+<div class="lesson-item">My name is Jalal = نام من جلال است</div>
+</div>
+
+<div id="computer" class="lesson">
+<h3>💻 درس اول کامپیوتر</h3>
+<div class="lesson-item">CPU = پردازنده مرکزی</div>
+<div class="lesson-item">RAM = حافظه موقت</div>
+<div class="lesson-item">Keyboard = صفحه کلید</div>
+<div class="lesson-item">Mouse = ماوس</div>
+<div class="lesson-item">Monitor = نمایشگر</div>
+<div class="lesson-item">Internet = اینترنت</div>
+</div>
+
+<div id="coding" class="lesson">
+<h3>👨‍💻 درس اول برنامه‌نویسی</h3>
+<div class="lesson-item">HTML = ساختار صفحات وب</div>
+<div class="lesson-item">CSS = طراحی صفحات وب</div>
+<div class="lesson-item">JavaScript = برنامه‌نویسی صفحات وب</div>
+<div class="lesson-item">Python = زبان برنامه‌نویسی پایتون</div>
+<div class="lesson-item">Android = سیستم‌عامل اندروید</div>
+</div>
+
+</div>
+
+<footer>
+<b>AFGHAN PLUS 🇦🇫</b>
+<p>Developer: JALAL ❤️</p>
+</footer>
+
+<script src="education.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "AFGHAN PLUS",
+  "short_name": "AFGHAN PLUS",
+  "description": "همه امکانات، برای همه مردم افغانستان",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#087443",
+  "theme_color": "#087443",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
