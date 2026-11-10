@@ -14,8 +14,8 @@
   "categories": ["education", "news", "utilities"],
   "icons": [
     {
-      "src": "icon.svg",
-      "sizes": "any",
+      "src": "./icon.svg",
+      "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
     }
