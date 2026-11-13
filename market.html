@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازار افغانستان | AFGHAN PLUS</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .market-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        .market-header {
+            text-align: center;
+            margin: 15px 0 25px;
+        }
+
+        .market-header h2 {
+            color: #159447;
+        }
+
+        .market-box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .market-box h3 {
+            margin-top: 0;
+        }
+
+        .market-box input,
+        .market-box select {
+            width: 100%;
+            padding: 12px;
+            margin: 7px 0;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            box-sizing: border-box;
+        }
+
+        .market-box button {
+            width: 100%;
+            padding: 12px;
+            background: #159447;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        .product-card {
+            background: #f7f9f7;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 13px;
+            margin: 10px 0;
+        }
+
+        .product-card h3 {
+            margin: 0 0 8px;
+        }
+
+        .product-price {
+            color: #159447;
+            font-weight: bold;
+        }
+
+        .delete-btn {
+            background: #d93030 !important;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #777;
+            padding: 15px;
+        }
+
+        .developer {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="market-container">
+
+    <a href="index.html" class="back-btn">⬅ بازگشت به صفحه اصلی</a>
+
+    <div class="market-header">
+        <h2>🇦🇫 بازار افغانستان</h2>
+        <p>قیمت کالاهای روزمره را ثبت و بررسی کنید.</p>
+    </div>
+
+    <div class="market-box">
+        <h3>📍 انتخاب شهر</h3>
+
+        <select id="cityFilter">
+            <option value="همه شهرها">همه شهرها</option>
+            <option value="کابل">کابل</option>
+            <option value="هرات">هرات</option>
+            <option value="مزار شریف">مزار شریف</option>
+            <option value="قندهار">قندهار</option>
+            <option value="ننگرهار">ننگرهار</option>
+            <option value="بامیان">بامیان</option>
+            <option value="غزنی">غزنی</option>
+            <option value="کندز">کندز</option>
+        </select>
+    </div>
+
+    <div class="market-box">
+        <h3>🔎 جست‌وجوی کالا</h3>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="نام کالا را بنویسید..."
+        >
+    </div>
+
+    <div class="market-box">
+        <h3>➕ ثبت قیمت کالا</h3>
+
+        <input type="text" id="productName"
+               placeholder="نام کالا؛ مثال: برنج">
+
+        <input type="number" id="productPrice"
+               placeholder="قیمت به افغانی" min="0">
+
+        <select id="productUnit">
+            <option value="کیلو">کیلو</option>
+            <option value="لیتر">لیتر</option>
+            <option value="بوجی">بوجی</option>
+            <option value="عدد">عدد</option>
+            <option value="بسته">بسته</option>
+        </select>
+
+        <select id="productCity">
+            <option value="کابل">کابل</option>
+            <option value="هرات">هرات</option>
+            <option value="مزار شریف">مزار شریف</option>
+            <option value="قندهار">قندهار</option>
+            <option value="ننگرهار">ننگرهار</option>
+            <option value="بامیان">بامیان</option>
+            <option value="غزنی">غزنی</option>
+            <option value="کندز">کندز</option>
+        </select>
+
+        <button onclick="addProduct()">ثبت قیمت</button>
+    </div>
+
+    <div class="market-box">
+        <h3>🛒 قیمت کالاها</h3>
+        <div id="productList"></div>
+    </div>
+
+    <div class="developer">
+        توسعه‌دهنده: <b>JALAL</b> 🇦🇫
+    </div>
+
+</div>
+
+<script>
+    let products = JSON.parse(
+        localStorage.getItem("afghanMarketProducts") || "[]"
+    );
+
+    function saveProducts() {
+        localStorage.setItem(
+            "afghanMarketProducts",
+            JSON.stringify(products)
+        );
+    }
+
+    function addProduct() {
+        const name = document.getElementById("productName").value.trim();
+        const price = Number(document.getElementById("productPrice").value);
+        const unit = document.getElementById("productUnit").value;
+        const city = document.getElementById("productCity").value;
+
+        if (!name || !price || price < 0) {
+            alert("لطفاً نام و قیمت معتبر کالا را وارد کنید.");
+            return;
+        }
+
+        products.unshift({
+            id: Date.now(),
+            name: name,
+            price: price,
+            unit: unit,
+            city: city
+        });
+
+        saveProducts();
+
+        document.getElementById("productName").value = "";
+        document.getElementById("productPrice").value = "";
+
+        showProducts();
+        alert("قیمت کالا ثبت شد!");
+    }
+
+    function deleteProduct(id) {
+        if (!confirm("آیا از حذف این کالا مطمئن هستید؟")) return;
+
+        products = products.filter(p => p.id !== id);
+        saveProducts();
+        showProducts();
+    }
+
+    function showProducts() {
+        const list = document.getElementById("productList");
+        const city = document.getElementById("cityFilter").value;
+        const search = document.getElementById("searchInput")
+            .value.trim().toLowerCase();
+
+        const filtered = products.filter(p => {
+            const cityMatch =
+                city === "همه شهرها" || p.city === city;
+
+            const searchMatch =
+                p.name.toLowerCase().includes(search);
+
+            return cityMatch && searchMatch;
+        });
+
+        list.innerHTML = "";
+
+        if (filtered.length === 0) {
+            list.innerHTML =
+                '<p class="empty-message">هنوز کالایی ثبت نشده است.</p>';
+            return;
+        }
+
+        filtered.forEach(p => {
+            const card = document.createElement("div");
+            card.className = "product-card";
+
+            const title = document.createElement("h3");
+            title.textContent = "📦 " + p.name;
+
+            const price = document.createElement("p");
+            price.className = "product-price";
+            price.textContent = p.price.toLocaleString("en-US") +
+                " افغانی / " + p.unit;
+
+            const location = document.createElement("p");
+            location.textContent = "📍 شهر: " + p.city;
+
+            const button = document.createElement("button");
+            button.className = "delete-btn";
+            button.textContent = "حذف کالا";
+            button.onclick = () => deleteProduct(p.id);
+
+            card.append(title, price, location, button);
+            list.appendChild(card);
+        });
+    }
+
+    document.getElementById("cityFilter")
+        .addEventListener("change", showProducts);
+
+    document.getElementById("searchInput")
+        .addEventListener("input", showProducts);
+
+    showProducts();
+</script>
+
+</body>
+</html>

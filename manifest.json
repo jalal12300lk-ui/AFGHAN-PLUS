@@ -1,0 +1,29 @@
+{
+  "id": "./",
+  "name": "AFGHAN PLUS",
+  "short_name": "AFGHAN PLUS",
+  "description": "Afghan Plus is an all-in-one platform for the people of Afghanistan.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#087443",
+  "theme_color": "#087443",
+  "lang": "fa",
+  "dir": "rtl",
+  "categories": ["education", "news", "utilities"],
+  "icons": [
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

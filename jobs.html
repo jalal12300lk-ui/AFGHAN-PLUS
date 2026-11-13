@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075c35">
+<title>AFGHAN JOBS</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f5f2;font-family:sans-serif;color:#183326}
+header{background:linear-gradient(135deg,#075c35,#079451);color:white;padding:25px 18px;border-radius:0 0 25px 25px}
+header a{color:white;text-decoration:none}
+.container{padding:17px}
+input,textarea,select{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:10px;font-size:14px;background:white}
+button{background:#087443;color:white;border:0;border-radius:10px;padding:13px;width:100%;font-size:15px;margin-top:10px}
+.box{background:white;padding:18px;border-radius:16px;margin:15px 0}
+.job{background:white;padding:17px;border-radius:15px;margin:12px 0;box-shadow:0 3px 12px #00000009}
+.job h3{color:#087443}
+.job p{font-size:13px;line-height:1.8;color:#666}
+.title{color:#087443}
+.badge{background:#e2f3e9;color:#087443;padding:5px 10px;border-radius:15px;font-size:12px}
+small{color:#777}
+#form{display:none}
+footer{text-align:center;padding:25px;color:#087443}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="index.html">← بازگشت</a>
+<h2>💼 AFGHAN JOBS</h2>
+<p>فرصت‌های کاری در افغانستان 🇦🇫</p>
+</header>
+
+<div class="container">
+
+<div class="box">
+<h3 class="title">🔎 جست‌وجوی شغل</h3>
+<input id="search" placeholder="نام شغل را جست‌وجو کنید">
+<select id="province">
+<option value="">تمام ولایت‌ها</option>
+<option>کابل</option>
+<option>هرات</option>
+<option>مزار شریف</option>
+<option>قندهار</option>
+<option>ننگرهار</option>
+<option>بلخ</option>
+<option>بامیان</option>
+<option>غزنی</option>
+</select>
+</div>
+
+<button onclick="toggleForm()">➕ ثبت آگهی استخدام</button>
+
+<div id="form" class="box">
+<h3 class="title">ثبت آگهی جدید</h3>
+
+<input id="jobTitle" placeholder="عنوان شغل">
+
+<input id="company" placeholder="نام شرکت یا کارفرما">
+
+<select id="city">
+<option value="">انتخاب ولایت</option>
+<option>کابل</option>
+<option>هرات</option>
+<option>مزار شریف</option>
+<option>قندهار</option>
+<option>ننگرهار</option>
+<option>بلخ</option>
+<option>بامیان</option>
+<option>غزنی</option>
+</select>
+
+<select id="type">
+<option>تمام وقت</option>
+<option>نیمه وقت</option>
+<option>دورکاری</option>
+</select>
+
+<textarea id="description" placeholder="توضیحات شغل"></textarea>
+
+<button onclick="addJob()">ثبت آگهی</button>
+</div>
+
+<h3 class="title">📋 فرصت‌های کاری</h3>
+
+<div id="jobsList"></div>
+
+</div>
+
+<footer>
+<b>AFGHAN PLUS 🇦🇫</b>
+<p>Developer: JALAL ❤️</p>
+</footer>
+
+<script src="jobs.js"></script>
+</body>
+</html>

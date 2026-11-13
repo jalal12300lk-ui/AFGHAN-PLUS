@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>آب‌وهوای افغانستان | AFGHAN PLUS</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.container{max-width:600px;margin:auto;padding:15px}
+.header{text-align:center;padding:20px}
+.box{background:white;padding:20px;border-radius:15px;box-shadow:0 3px 12px #0001;text-align:center}
+select,button{width:100%;padding:13px;margin:10px 0;border:1px solid #ddd;border-radius:9px;font-size:16px}
+button{background:#159447;color:white;border:0}
+.back{display:block;text-align:center;background:#222;color:white;padding:12px;border-radius:10px;text-decoration:none;margin-bottom:15px}
+.temp{font-size:48px;color:#159447;font-weight:bold;margin:15px}
+.info{background:#f1f7f1;padding:15px;border-radius:10px;margin:8px}
+.footer{text-align:center;padding:20px;color:#777}
+</style>
+</head>
+<body>
+<div class="container">
+
+<a class="back" href="index.html">⬅ بازگشت به صفحه اصلی</a>
+
+<div class="header">
+<h2>🌤️ آب‌وهوای افغانستان</h2>
+<p>وضعیت آب‌وهوای شهر خود را بررسی کنید.</p>
+</div>
+
+<div class="box">
+<h3>📍 انتخاب شهر</h3>
+
+<select id="city">
+<option value="34.5553,69.2075">کابل</option>
+<option value="34.3529,62.2040">هرات</option>
+<option value="36.7090,67.1109">مزار شریف</option>
+<option value="31.6289,65.7372">قندهار</option>
+<option value="34.4253,70.4500">جلال‌آباد</option>
+<option value="36.7280,68.8680">کندز</option>
+<option value="33.5539,68.4200">غزنی</option>
+<option value="34.8216,67.8273">بامیان</option>
+</select>
+
+<button onclick="getWeather()">نمایش آب‌وهوا</button>
+
+<p id="status">برای دریافت اطلاعات، شهر را انتخاب کنید.</p>
+
+<div id="result" style="display:none">
+<div class="temp" id="temperature">--°C</div>
+<h3 id="description">وضعیت هوا</h3>
+<div class="info">💧 رطوبت: <b id="humidity">--</b></div>
+<div class="info">💨 سرعت باد: <b id="wind">--</b></div>
+</div>
+</div>
+
+<div class="footer">
+توسعه‌دهنده: <b>JALAL</b> 🇦🇫
+</div>
+</div>
+
+<script>
+const descriptions = {
+0:"آسمان صاف ☀️",
+1:"کمی صاف 🌤️",
+2:"نیمه ابری ⛅",
+3:"ابری ☁️",
+45:"مه آلود 🌫️",
+48:"مه آلود 🌫️",
+51:"باران ریز 🌦️",
+53:"باران ریز 🌦️",
+55:"باران ریز 🌧️",
+61:"بارانی 🌧️",
+63:"بارانی 🌧️",
+65:"باران شدید 🌧️",
+71:"برف ❄️",
+73:"برف ❄️",
+75:"برف شدید ❄️",
+80:"رگبار 🌦️",
+81:"رگبار 🌧️",
+82:"رگبار شدید 🌧️",
+95:"رعد و برق ⛈️"
+};
+
+async function getWeather() {
+    const status = document.getElementById("status");
+    const result = document.getElementById("result");
+    const coords = document.getElementById("city").value.split(",");
+
+    status.textContent = "در حال دریافت اطلاعات...";
+    result.style.display = "none";
+
+    try {
+        const url = "https://api.open-meteo.com/v1/forecast?latitude="
+        + coords[0] + "&longitude=" + coords[1]
+        + "&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&timezone=Asia%2FKabul";
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Network error");
+
+        const data = await response.json();
+        const current = data.current;
+
+        document.getElementById("temperature").textContent =
+            Math.round(current.temperature_2m) + "°C";
+
+        document.getElementById("description").textContent =
+            descriptions[current.weather_code] || "وضعیت هوا";
+
+        document.getElementById("humidity").textContent =
+            current.relative_humidity_2m + "%";
+
+        document.getElementById("wind").textContent =
+            current.wind_speed_10m + " km/h";
+
+        result.style.display = "block";
+        status.textContent = "اطلاعات آب‌وهوا دریافت شد.";
+    } catch (error) {
+        status.textContent = "خطا در اتصال. اینترنت را بررسی کنید.";
+    }
+}
+
+getWeather();
+</script>
+</body>
+</html>

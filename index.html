@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087443">
+<meta name="description" content="افغان پلاس؛ اخبار، آب‌وهوا، تبدیل ارز، آموزش، کاریابی و بازار افغانستان.">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon-512.png">
+<title>AFGHAN PLUS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🇦🇫</div>
+    <div>
+        <h1>AFGHAN PLUS</h1>
+        <p>همه امکانات، برای همه مردم افغانستان</p>
+    </div>
+</header>
+
+<section class="welcome">
+    <h2>خوش آمدید ❤️</h2>
+    <p>به خانواده بزرگ افغان پلاس خوش آمدید.</p>
+    <span>🇦🇫 افغانستان خانه ماست</span>
+</section>
+
+<h3 class="section-title">خدمات برنامه</h3>
+
+<div class="grid">
+
+    <div class="card" onclick="openPage('currency')">
+        <span>💱</span>
+        <h3>تبدیل ارز</h3>
+        <p>محاسبه ارزها</p>
+    </div>
+
+    <div class="card" onclick="openPage('jobs')">
+        <span>💼</span>
+        <h3>کاریابی</h3>
+        <p>فرصت‌های شغلی</p>
+    </div>
+
+    <div class="card" onclick="openPage('market')">
+        <span>🏠</span>
+        <h3>خرید و فروش</h3>
+        <p>بازار افغانستان</p>
+    </div>
+
+    <div class="card" onclick="openPage('education')">
+        <span>📚</span>
+        <h3>آموزش</h3>
+        <p>یادگیری رایگان</p>
+    </div>
+
+    <div class="card" onclick="openPage('news')">
+        <span>📰</span>
+        <h3>اخبار</h3>
+        <p>تازه‌ترین خبرها</p>
+    </div>
+
+    <div class="card" onclick="openPage('weather')">
+        <span>🌤️</span>
+        <h3>آب‌وهوا</h3>
+        <p>وضعیت ولایت‌ها</p>
+    </div>
+
+    <div class="card" onclick="openPage('contact')">
+        <span>📞</span>
+        <h3>تماس با ما</h3>
+        <p>پشتیبانی و ارتباط</p>
+    </div>
+</div>
+
+<section class="about">
+    <h3>درباره ما</h3>
+    <p>
+        افغان پلاس با هدف ارائه خدمات مفید و کاربردی
+        برای مردم افغانستان ساخته شده است.
+    </p>
+    <p class="developer">Developer: JALAL ❤️</p>
+</section>
+
+<footer>
+    <p>AFGHAN PLUS 🇦🇫</p>
+    <small>ساخته شده با عشق برای مردم افغانستان</small>
+</footer>
+
+<script src="app.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js")
+            .then(function (registration) {
+                console.log("Service Worker registered:", registration.scope);
+            })
+            .catch(function (error) {
+                console.error("Service Worker registration failed:", error);
+            });
+    });
+}
+</script>
+
+</body>
+</html>
