@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{'rtl' if lang != 'uz' else 'ltr'}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Afghan TopUp</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+background:#0c1424;
+color:white;
+font-family:Arial,sans-serif
+}
+header{
+background:linear-gradient(135deg,#172c49,#101827);
+padding:25px 15px;
+text-align:center;
+border-bottom:3px solid #e8b83f
+}
+.logo{font-size:30px;color:#f5c451;font-weight:bold}
+main{max-width:450px;margin:25px auto;padding:15px}
+.card{
+background:#192940;
+padding:23px;
+border-radius:20px;
+box-shadow:0 10px 30px #0005
+}
+h2{text-align:center;color:#f5c451}
+label{display:block;margin-top:18px}
+input,select,button{
+width:100%;
+padding:15px;
+margin-top:8px;
+border:0;
+border-radius:11px;
+font-size:16px
+}
+button{
+background:#e8b83f;
+color:#152238;
+font-weight:bold;
+margin-top:22px
+}
+a{color:#f5c451;text-decoration:none}
+.languages{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:18px
+}
+.notice{
+background:#263b54;
+padding:15px;
+border-radius:12px;
+margin-top:20px;
+line-height:1.8;
+text-align:center
+}
+.message{color:#8df3ad;text-align:center}
+</style>
+</head>
+
+<body>
+<header>
+<div class="logo">🇦🇫 Afghan TopUp</div>
+<p>{{t.subtitle}}</p>
+
+<div class="languages">
+<a href="/language/fa">دری</a>
+<a href="/language/ps">پښتو</a>
+<a href="/language/uz">O‘zbek</a>
+</div>
+</header>
+
+<main>
+<div class="card">
+<h2>{{t.welcome}}</h2>
+
+<form method="POST">
+<label>{{t.phone}}</label>
+<input name="phone" type="tel"
+placeholder="937XXXXXXX" required>
+
+<label>{{t.operator}}</label>
+<select name="operator" required>
+<option value="">---</option>
+{% for op in operators %}
+<option value="{{op}}">{{op}}</option>
+{% endfor %}
+</select>
+
+<label>{{t.amount}}</label>
+<input name="amount" type="number"
+min="1" max="100000" required>
+
+<button>{{t.buy}}</button>
+</form>
+
+{% if message %}
+<p class="message">{{message}}</p>
+{% endif %}
+
+<div class="notice">
+💵 USDT - TRC20
+<br>
+{{t.notice}}
+<br><br>
+<a href="/orders">{{t.orders}}</a>
+</div>
+</div>
+</main>
+</body>
+</html>
+
+<script>
+const DEMO_RATE = 70;
+
+const amountInput = document.querySelector(
+    'input[name="amount"]'
+);
+
+const calculator = document.createElement("div");
+
+calculator.className = "notice";
+calculator.innerHTML =
+    "💵 مبلغ تقریبی: <strong id='usdt'>0 USDT</strong>" +
+    "<br><small>نرخ آزمایشی، قابل تغییر</small>";
+
+amountInput.after(calculator);
+
+function calculateUSDT() {
+    const afn = Number(amountInput.value) || 0;
+    const usdt = afn / DEMO_RATE;
+
+    document.getElementById("usdt").textContent =
+        usdt.toFixed(2) + " USDT";
+}
+
+amountInput.addEventListener("input", calculateUSDT);
+</script>
+

@@ -1,0 +1,25 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+venv/
+database/orders.db
+*.jks
+*.apk
+build/
+
+# Local backups and old versions
+backups/
+*-backup.py
+app-before-*.py
+app.py.before_*
+requirements.txt.before_*
+AndroidManifest-before-public.xml
+MainActivity-before-public.java
+PY
+
+# Android project (not needed for the web service)
+android/
+templates/*-before-*.html

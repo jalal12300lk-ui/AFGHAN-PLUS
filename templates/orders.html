@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Orders</title>
+<style>
+body{background:#101827;color:white;font-family:Arial;padding:20px}
+h2{color:#f5c451}
+.card{background:#1c2b43;padding:15px;margin:12px 0;border-radius:12px}
+a{color:#f5c451}
+</style>
+</head>
+<body>
+<h2>🇦🇫 سفارش‌های Afghan TopUp</h2>
+{% for o in orders %}
+<div class="card">
+سفارش: #{{o[0]}}<br>
+شماره: {{o[1]}}<br>
+اپراتور: {{o[2]}}<br>
+مبلغ: {{o[3]}} AFN<br>
+وضعیت: {{o[4]}}
+</div>
+{% else %}
+<p>هنوز سفارشی ثبت نشده است.</p>
+{% endfor %}
+<a href="/">بازگشت به خانه</a>
+</body>
+</html>

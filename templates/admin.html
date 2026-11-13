@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Afghan TopUp Admin</title>
+<style>
+body{
+background:#101827;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+.box{
+background:#1c2b43;
+padding:20px;
+border-radius:15px;
+margin:15px auto;
+max-width:450px;
+}
+h2{color:#f5c451}
+input,button,select{
+width:100%;
+padding:13px;
+margin:8px 0;
+border:0;
+border-radius:9px;
+box-sizing:border-box;
+}
+button{
+background:#e8b83f;
+font-weight:bold;
+}
+a{color:#f5c451}
+.order{
+background:#263b54;
+padding:15px;
+margin:12px 0;
+border-radius:12px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>🇦🇫 مدیریت Afghan TopUp</h2>
+
+{% if not logged_in %}
+
+{% if message %}
+<p style="color:#ff7777;text-align:center">{{ message }}</p>
+{% endif %}
+
+<form method="POST">
+<input type="hidden" name="action" value="login">
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+<input type="password" name="password"
+placeholder="رمز عبور مدیر" required>
+<button>ورود به پنل مدیریت</button>
+</form>
+
+{% else %}
+
+<p>خوش آمدید مدیر!</p>
+<form method="POST" action="/admin/logout">
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+<button type="submit">خروج از پنل</button>
+</form>
+
+<h3>آمار سفارش‌ها</h3>
+
+<div class="order">
+کل سفارش‌ها: {{ stats.total }}<br>
+در انتظار بررسی: {{ stats.pending }}<br>
+تأیید آزمایشی: {{ stats.reviewed }}<br>
+لغوشده‌ها: {{ stats.cancelled }}
+</div>
+
+<h3>سفارش‌های مشتریان</h3>
+
+<form method="GET" action="/admin">
+<select name="status" onchange="this.form.submit()">
+<option value="ALL" {% if filter_status == "ALL" %}selected{% endif %}>همه سفارش‌ها</option>
+<option value="DEMO" {% if filter_status == "DEMO" %}selected{% endif %}>در انتظار بررسی</option>
+<option value="REVIEWED" {% if filter_status == "REVIEWED" %}selected{% endif %}>تأیید آزمایشی</option>
+<option value="CANCELLED" {% if filter_status == "CANCELLED" %}selected{% endif %}>لغوشده‌ها</option>
+</select>
+</form>
+
+
+{% for o in orders %}
+<div class="order">
+شماره سفارش: #{{o[0]}}<br>
+شماره تلفن: {{o[1]}}<br>
+اپراتور: {{o[2]}}<br>
+مبلغ: {{o[3]}} AFN<br>
+وضعیت: {{o[4]}}
+
+<form method="POST">
+<input type="hidden" name="action" value="status">
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+<input type="hidden" name="order_id" value="{{o[0]}}">
+
+<select name="status">
+<option value="DEMO">در انتظار بررسی</option>
+<option value="REVIEWED">تأیید آزمایشی</option>
+<option value="CANCELLED">لغو سفارش</option>
+</select>
+
+<button>تغییر وضعیت</button>
+</form>
+</div>
+{% else %}
+<p>هنوز سفارشی ثبت نشده است.</p>
+{% endfor %}
+
+{% endif %}
+</div>
+
+</body>
+</html>
